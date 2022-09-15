@@ -13,7 +13,6 @@ const Signup = () => {
     e.preventDefault();
     setError('');
     try {
-      console.log(signUp);
       await signUp(email, password);
     } catch (err) {
       setError(err.message);
