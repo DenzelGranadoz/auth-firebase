@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../context/UserAuthContext';
 
 const Signup = () => {
@@ -8,12 +8,14 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { signUp } = useUserAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
       await signUp(email, password);
+      navigate('/');
     } catch (err) {
       setError(err.message);
     }
