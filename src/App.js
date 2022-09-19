@@ -5,6 +5,8 @@ import Login from './components/Login';
 import { Container, Row, Col } from 'react-bootstrap';
 import Signup from './components/Signup';
 import { UserAuthContextProvider } from './context/UserAuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import Home from './components/Home';
 
 function App() {
   return (
@@ -14,6 +16,14 @@ function App() {
           <UserAuthContextProvider>
             <Routes>
               <Route path="/" element={<Login />}></Route>
+              <Route
+                path="/home"
+                element={
+                  <ProtectedRoute>
+                    <Home />
+                  </ProtectedRoute>
+                }
+              ></Route>
               <Route path="/signup" element={<Signup />}></Route>
             </Routes>
           </UserAuthContextProvider>
