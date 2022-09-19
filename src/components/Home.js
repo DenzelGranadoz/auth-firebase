@@ -3,7 +3,14 @@ import { Button } from 'react-bootstrap';
 import { useUserAuth } from '../context/UserAuthContext';
 
 const Home = () => {
-  const { user } = useUserAuth();
+  const { user, logOut } = useUserAuth();
+  const handleLogout = async () => {
+    try {
+      await logOut();
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   return (
     <>
@@ -13,7 +20,9 @@ const Home = () => {
         {user && user.email}
       </div>
       <div className="d-grid gap-2">
-        <Button variant="primary">Log out</Button>
+        <Button onClick={handleLogout} variant="primary">
+          Log out
+        </Button>
       </div>
     </>
   );
